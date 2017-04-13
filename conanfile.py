@@ -31,8 +31,8 @@ class MySQLClientConan(ConanFile):
         unzip(tar_file)
         shutil.move("mysql-connector-c-%s-src" % self.version, "mysqlclient")
         os.unlink(tar_file)
-        shutil.move("mysqlclient/CMakeLists.txt", "mysqlclient/CMakeListsOriginal.cmake")
-        shutil.move("CMakeLists.txt", "mysqlclient/CMakeLists.txt")
+        shutil.copyfile("mysqlclient/CMakeLists.txt", "mysqlclient/CMakeListsOriginal.cmake")
+        shutil.copyfile("CMakeLists.txt", "mysqlclient/CMakeLists.txt")
 
     def build(self):
         if self.settings.compiler == "Visual Studio" and self.settings.compiler.version != 12:
